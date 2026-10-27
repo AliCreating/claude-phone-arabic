@@ -1,0 +1,10 @@
+; Everything dialled from the iPhone goes to the controller daemon, except the test lines.
+[from-phone]
+exten => 600,1,Answer()
+ same => n,Echo()
+exten => 601,1,Answer()
+ same => n,Milliwatt()
+exten => _X,1,Stasis(claude-phone,${EXTEN})
+ same => n,Hangup()
+exten => _X.,1,Stasis(claude-phone,${EXTEN})
+ same => n,Hangup()

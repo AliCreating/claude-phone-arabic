@@ -1,0 +1,26 @@
+[project]
+name = "claude-phone-arabic"
+version = "0.1.0"
+description = "Claude Code calls your iPhone in Saudi Arabic: ElevenLabs voices, local Asterisk and whisper, macOS"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = ["aiohttp>=3.9", "mcp>=2.3,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+phone = "claude_phone.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["claude_phone"]
+
+[tool.setuptools.package-data]
+claude_phone = ["web/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

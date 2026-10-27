@@ -1,0 +1,38 @@
+# Copy to ~/.claude-phone/config.toml (scripts/setup.sh does it). Every key is optional; defaults shown.
+# After editing: phone restart
+
+owner_name = "Sam"        # REQUIRED in practice: your name. Spoken on calls; tools become call_sam / notify_sam
+language = "ar"           # "ar": Saudi-dialect calls and phrases, Arabic speech recognition. "en": English
+caller_name = "Claude"    # what the iPhone shows when Claude calls ("" = the session's repo/branch)
+phone_ext = "201"         # the iPhone's SIP username; its password: `phone secret sip`
+# lan_ip = "192.168.1.50" # default: detected. Pin it once your router reserves the Mac's address
+# lan_cidr = "192.168.1.0/24"
+
+# Call timing
+ring_seconds = 25         # keep ring + answer + transcribe under Claude Code's 120 s MCP limit
+record_seconds = 60       # longest answer
+answer_delay = 3          # silence after you pick up, before Claude speaks
+end_pause = 3             # silence after Claude speaks, before the beep
+say_caller = false        # true: start each call by naming the calling project
+# whisper_language = "ar" # what you answer in: "ar", "en", or "auto". Default: same as `language`
+
+# Voice (ElevenLabs; key in .env as ELEVENLABS_API_KEY)
+elevenlabs_voice_id = "IK7YYZcSpmlkjKrQxbSn"          # Raed, Saudi (Voice Library: paid plan)
+elevenlabs_fallback_voice_id = "nPczCjzI2devNBz1zQrb" # Brian, built in (free plan); used when the main voice is refused
+elevenlabs_model = "eleven_v3"                        # acts out [happy], [thoughtful]...; other models drop the tags
+elevenlabs_settings = { stability = 0.5 }             # v3: 0.0 creative, 0.5 natural, 1.0 robust
+say_voice = "Majed"       # last resort when ElevenLabs fails: the Mac's voice ("system" = System Voice, can be Siri)
+# tts_provider = "say"    # skip ElevenLabs entirely
+
+# Other Saudi voices (paid plan): Jeddawi yXEnnEln9armDCyhkXcA, Nasser AlJubaily cFUFIbKkO2iZFwS8cRnY,
+# Fahad rpGHcNQJvO8dFNNFNj1v, Abdulrahman KfYUTAF49N2CPU3iKuMi. Free built-in: George JBFqnCBsd6RMkjVDRZzb.
+
+# Words the voice says wrong, respelled before speaking (whole words; tashkeel works)
+# [pronunciations]
+# "محمد" = "مُحَمَّد"
+# nginx = "engine x"
+
+# A different voice per repo
+# [repo_voices.my-backend]
+# provider = "elevenlabs"
+# voice = "yXEnnEln9armDCyhkXcA"
